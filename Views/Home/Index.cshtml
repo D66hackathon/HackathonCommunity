@@ -1,0 +1,33 @@
+﻿@model Hackathon_Community.Models.HomeModel
+@{
+    ViewBag.Title = "Index";
+}
+
+@foreach (var team in Model.teams)
+{
+    <div>
+        Team naam: @team.Naam<br />
+        Team idee: @team.Idee<br />
+        Team datum: @team.Datum<br />
+        Leden:<br />
+        @foreach(var lid in team.Leden)
+        {
+            <div>- @lid.Naam</div>
+        }
+    </div><br /><br />
+}
+
+@using (Html.BeginForm("NieuwTeam", "Home"))
+{
+    <div>Team naam:</div>
+    @Html.TextBox("TeamNaam");
+    <br />
+    <div>Team idee:</div>
+    @Html.TextArea("TeamIdee");
+    <br />
+    <div>Datum:</div>
+    @Html.TextBox("TeamDatum", null, new {@class = "datepicker"})
+    <input type="submit" value="Aanmelden">
+}
+<br /><br />
+
